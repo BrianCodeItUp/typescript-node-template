@@ -8,7 +8,10 @@
     "start": "node -r module-alias/register dist/index.js",
     "dev": "nodemon",
     "test": "jest --coverage",
-    "test:watch": "jest --watchAll"
+    "test:watch": "jest --watchAll",
+    "migration:gen": "ts-node --transpile-only ./node_modules/typeorm/cli.js migration:generate",
+    "migration:run": "ts-node --transpile-only ./node_modules/typeorm/cli.js migration:run",
+    "migration:revert": "ts-node --transpile-only ./node_modules/typeorm/cli.js migration:revert"
   },
   "nodemonConfig": {
     "watch": [
@@ -23,19 +26,26 @@
   "_moduleAliases": {
     "@controllers": "dist/controllers/index.js",
     "@services": "dist/services/index.js",
-    "@entities": "dist/entities/index.js"
+    "@entities": "dist/entities/index.js",
+    "@repository": "dist/repositories/index.js",
+    "@utils": "dist/utils/index.js",
+    "@middlewares": "dist/middlewares/index.js"
   },
   "dependencies": {
+    "@types/morgan": "^1.9.3",
     "body-parser": "^1.19.1",
     "class-transformer": "^0.5.1",
     "class-validator": "^0.13.2",
     "express": "^4.17.2",
     "module-alias": "^2.2.2",
+    "morgan": "^1.10.0",
     "multer": "^1.4.4",
+    "pg": "^8.7.1",
     "reflect-metadata": "^0.1.13",
     "routing-controllers": "^0.9.0",
     "tsconfig-paths": "^3.12.0",
     "typedi": "^0.10.0",
+    "typeorm": "^0.2.41",
     "typescript": "^4.5.4"
   },
   "devDependencies": {
@@ -47,6 +57,7 @@
     "jest": "^27.4.5",
     "nodemon": "^2.0.15",
     "ts-jest": "^27.1.2",
-    "ts-node": "^10.4.0"
+    "ts-node": "^10.4.0",
+    "winston": "^3.3.3"
   }
 }

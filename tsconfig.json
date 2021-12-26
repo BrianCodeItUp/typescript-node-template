@@ -12,9 +12,8 @@
     "strictNullChecks": true,
     "strictFunctionTypes": true,
     "noImplicitThis": true,
-
     "noUnusedLocals": false,
-    "noUnusedParameters": true,
+    "noUnusedParameters": false,
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
     "allowSyntheticDefaultImports": true,
@@ -26,7 +25,10 @@
     "paths": {
       "@controllers": ["src/controllers/index.ts"],
       "@services": ["src/services/index.ts"],
-      "@entities": ["src/entities/index.ts"]
+      "@entities": ["src/entities/index.ts"],
+      "@repository": ["src/repositories/index.ts"],
+      "@utils": ["src/utils/index.ts"],
+      "@middlewares": ["src/middlewares/index.ts"]
     }
   },
   "exclude": ["node_modules"],

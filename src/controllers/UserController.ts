@@ -8,7 +8,7 @@ class UserController {
   constructor(private userService: UserService) {}
   @Get()
   getAllUser () {
-    return this.userService.getAllUser()
+    return this.userService.getUser()
   }
 }
 
