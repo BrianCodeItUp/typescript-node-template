@@ -1,9 +1,4 @@
-import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm'
-
-export enum Gender {
-  male = 'male',
-  female = 'female'
-}
+import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn } from 'typeorm'
 
 @Entity({ name: "user"})
 class UserEntity { 
@@ -11,13 +6,19 @@ class UserEntity {
   id: number;
   
   @Column()
-  name: string;
+  name: string
 
   @Column({ unique: true })
   email: string
 
-  @Column({ type: 'enum', enum: Gender })
-  gender: Gender
+  @Column({ type: 'varchar', length: 255 })
+  password: string
+  
+  @CreateDateColumn()
+  createdDate: Date
+
+  @UpdateDateColumn()
+  updatedDate: Date
 }
 
 export default UserEntity
