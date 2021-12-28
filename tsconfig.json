@@ -28,7 +28,8 @@
       "@entities": ["src/entities/index.ts"],
       "@repository": ["src/repositories/index.ts"],
       "@utils": ["src/utils/index.ts"],
-      "@middlewares": ["src/middlewares/index.ts"]
+      "@middlewares": ["src/middlewares/index.ts"],
+      "@dtos": ["src/dtos/index.ts"]
     }
   },
   "exclude": ["node_modules"],

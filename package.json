@@ -29,7 +29,8 @@
     "@entities": "dist/entities/index.js",
     "@repository": "dist/repositories/index.js",
     "@utils": "dist/utils/index.js",
-    "@middlewares": "dist/middlewares/index.js"
+    "@middlewares": "dist/middlewares/index.js",
+    "@dtos": "dist/dtos/index.js"
   },
   "dependencies": {
     "@types/morgan": "^1.9.3",

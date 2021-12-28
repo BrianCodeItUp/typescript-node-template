@@ -1,0 +1,15 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+      {
+          "type": "node",
+          "name": "Debug Typescript",
+          "request": "launch",
+          "program": "${workspaceRoot}/src/index.ts",
+          "runtimeArgs": ["-r", "ts-node/register", "-r", "tsconfig-paths/register"],
+          "console": "integratedTerminal",
+          "cwd": "${workspaceRoot}",
+          "protocol": "inspector"
+      }
+  ]
+}
