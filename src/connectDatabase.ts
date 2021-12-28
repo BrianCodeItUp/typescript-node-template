@@ -1,5 +1,6 @@
 import { createConnection, Entity } from 'typeorm'
 import { logger } from '@utils'
+import { User } from '@entities'
 
 async function connectDatabase () {
   try {
@@ -11,6 +12,7 @@ async function connectDatabase () {
       })
     }
     logger.info('Database Connected 🚀🚀🚀')
+
     return connection
   } catch(e) {
     logger.error(`Connect Database Fail: ${e}`)

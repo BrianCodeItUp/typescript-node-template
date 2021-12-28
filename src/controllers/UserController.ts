@@ -1,4 +1,5 @@
-import { JsonController, Get, Body, Post } from 'routing-controllers'
+import { JsonController, Get, Body, Post, Res, HttpCode, InternalServerError } from 'routing-controllers'
+import { Response } from 'express'
 import { Service } from 'typedi'
 import { UserService } from '@services'
 import { SignUpData } from '@dtos'
@@ -9,13 +10,19 @@ class UserController {
   constructor(private userService: UserService) {}
 
   @Post('/signup')
-  signup(@Body() userData: SignUpData) {
-
+  @HttpCode(201)
+  async signup(@Body() userData: SignUpData, @Res() res: Response) {
+    try {
+      await this.userService.signup(userData)
+      return {}
+    } catch(e) {
+      throw new InternalServerError(e.message)
+    }
   }
 
   @Get('/signin')
   signIn() {
-    return this.userService.getUser()
+    // return this.userService.getUser()
   }
 
 }

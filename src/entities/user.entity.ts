@@ -1,7 +1,7 @@
 import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn } from 'typeorm'
 
-@Entity({ name: "user"})
-class UserEntity { 
+@Entity()
+class User { 
   @PrimaryGeneratedColumn()
   id: number;
   
@@ -21,4 +21,4 @@ class UserEntity {
   updatedDate: Date
 }
 
-export default UserEntity
+export default User
