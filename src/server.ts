@@ -11,6 +11,7 @@ const PORT = process.env.PORT || 3000
 
 function startServer () {
   useContainer(Container)
+  // Register repository with DI container
   entities.forEach(entity => {
     const repository = getRepository(entity.entity)
     Container.set(`${entity.name}Repository`, repository)
