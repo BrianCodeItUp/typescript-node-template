@@ -2,10 +2,13 @@ import express from 'express'
 import { createExpressServer, useContainer } from 'routing-controllers'
 import { Container } from 'typedi'
 import { getRepository } from 'typeorm'
+import session from 'express-session'
+import passport from 'passport'
 import { UserController } from '@controllers'
 import { loggingMiddleware } from '@middlewares'
 import { entities } from '@entities'
 import { logger } from '@utils'
+import './passport'
 
 const PORT = process.env.PORT || 3000
 
@@ -23,6 +26,13 @@ function startServer () {
   
   app.use(express.json())
   app.use(express.urlencoded({ extended: false }))
+  app.use(session({
+    secret: 'mysecrt',
+    resave: false,
+    saveUninitialized: false
+  }))
+  app.use(passport.initialize())
+  app.use(passport.session())
   app.use(loggingMiddleware)
   app.listen(PORT, () => logger.info(`Server is listening on PORT ${PORT}`))
 }

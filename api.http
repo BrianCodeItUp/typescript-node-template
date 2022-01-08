@@ -14,3 +14,11 @@ Content-Type: application/json
   "password": "amy1938ab"
 }
 
+
+### Signin
+Content-Type: application/json
+
+{
+  "email": "amy@gmail.com",
+  "password": "amy1938ab"
+}

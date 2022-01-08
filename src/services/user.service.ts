@@ -1,7 +1,8 @@
+import { NotFoundError, BadRequestError } from 'routing-controllers'
 import { Service, Inject } from 'typedi'
 import { Repository } from 'typeorm'
 import bcrypt from 'bcrypt'
-import { SignUpData } from '@dtos'
+import { SignupDto, SigninDto } from '@dtos'
 import { logger } from '@utils'
 import { User } from '@entities'
 
@@ -9,12 +10,12 @@ import { User } from '@entities'
 class UserService { 
   constructor(@Inject('userRepository') private userRepo: Repository<User>) {}
 
-  async signup(signupData: SignUpData) {
-    const hashedPassword = await bcrypt.hash(signupData.password, 10)
+  async signup(signupDto: SignupDto) {
+    const hashedPassword = await bcrypt.hash(signupDto.password, 10)
     try {
       await this.userRepo.insert({
-        name: signupData.username,
-        email: signupData.email,
+        name: signupDto.username,
+        email: signupDto.email,
         password: hashedPassword
       })
     } catch(e) {
@@ -23,8 +24,16 @@ class UserService {
     }
   }
 
-  getAllUser() {
-    return [{ name: 'Brian', age: 28}, { name: 'John', age: 30}, { name: 'Amy', age: 22}]
+  async signin(signinDto: SigninDto) {
+    const user = await this.userRepo.findOne({ email: signinDto.email })
+    if (user) {
+      const isCorrect = await bcrypt.compare(signinDto.password, user.password)
+      if (isCorrect) {
+        return user
+      }
+      throw new BadRequestError('Signin Fail')
+    }
+    throw new NotFoundError('User Not Found')
   }
 }
 
